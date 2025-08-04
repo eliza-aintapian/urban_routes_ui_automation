@@ -1,56 +1,37 @@
-import data  # Task 3: Import test data
-import helpers  # Task 4: Import helper functions for server check
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+import time
+from pages import UrbanRoutesPage
 
-class TestUrbanRoutes:
+driver = webdriver.Chrome()
+driver.get("https://cnt-bd24763a-2901-4257-9efa-3df7e1133158.containerhub.tripleten-services.com")
+driver.maximize_window()
+time.sleep(2)
 
-    # Task 4: Setup class to check server connection before running tests
-    @classmethod
-    def setup_class(cls):
-        if helpers.is_url_reachable(data.URBAN_ROUTES_URL):
-            print("Connected to the Urban Routes server")
-        else:
-            print("Cannot connect to Urban Routes. Check the server is on and still running")
+page = UrbanRoutesPage(driver)
 
-    # Task 3: Create empty test functions to be implemented in Sprint 8
+page.select_locations()
+page.select_custom_option()
+page.select_drive_icon()
+page.book_ride()
+car_name = page.choose_camping()
+print("Car name:", car_name)
 
-    def test_set_route(self):
-        # Add in S8
-        print("function created for set route")
-        pass
+page.add_driver_license()
+page.fill_driver_info()
+page.driver.find_element(By.CSS_SELECTOR, '.modal-container').click()
+#page.click_on_the_overlay()
+page.submit_driver_info()
+page.accept_license_info()
+page.enter_payment_method()
+page.add_card()
+page.fill_card_info()
+page.link_card()
+page.click_close()
+page.book_a_car()
 
-    def test_select_plan(self):
-        # Add in S8
-        print("function created for select plan")
-        pass
+verification_text = page.get_verification_text()
+print("Verification text:", verification_text)
 
-    def test_fill_phone_number(self):
-        # Add in S8
-        print("function created for fill phone number")
-        pass
-
-    def test_fill_card(self):
-        # Add in S8
-        print("function created for fill card")
-        pass
-
-    def test_comment_for_driver(self):
-        # Add in S8
-        print("function created for comment for driver")
-        pass
-
-    def test_order_blanket_and_handkerchiefs(self):
-        # Add in S8
-        print("function created for order blanket and handkerchiefs")
-        pass
-
-    def test_order_2_ice_creams(self):
-        # Task 5: Set up loop to prepare for ice cream order logic
-        for _ in range(2):
-            # Add in S8
-            pass
-        print("function created for order 2 ice creams")
-
-    def test_car_search_model_appears(self):
-        # Add in S8
-        print("function created for car search model appears")
-        pass
+time.sleep(2)
+driver.quit()
