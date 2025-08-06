@@ -1,9 +1,6 @@
 from selenium.webdriver.common.by import By
 import time
 
-import data
-from data import ADDRESS_FROM, ADDRESS_TO, PHONE_NUMBER, CARD_NUMBER, CARD_CODE
-
 class UrbanRoutesPage:
     FROM_LOCATOR = (By.ID, 'from')
     TO_LOCATOR = (By.ID, 'to')
@@ -24,12 +21,25 @@ class UrbanRoutesPage:
     def __init__(self, driver):
         self.driver = driver
 
-    def select_locations(self):
-        self.driver.find_element(*self.FROM_LOCATOR).send_keys(ADDRESS_FROM)
-        self.driver.find_element(*self.TO_LOCATOR).send_keys(ADDRESS_TO)
+    def select_locations(self, from_address, to_address):
+        self.driver.find_element(*self.FROM_LOCATOR).send_keys(from_address)
+        self.driver.find_element(*self.TO_LOCATOR).send_keys(to_address)
         time.sleep(2)
 
-    def select_custom_option(self):
+    def get_from(self):
+        return self.driver.find_element(*self.FROM_LOCATOR).get_property("value")
+
+    def get_to(self):
+        return self.driver.find_element(*self.TO_LOCATOR).get_property("value")
+
+    def get_selected_plan_name(self):
+        active_plan = self.driver.find_element(By.CSS_SELECTOR, '.tcard.active .tcard-title')
+        return active_plan.text
+
+
+
+
+    """def select_custom_option(self):
         self.driver.find_element(*self.CUSTOM_OPTION_LOCATOR).click()
         time.sleep(2)
 
@@ -55,7 +65,7 @@ class UrbanRoutesPage:
         self.driver.find_element(*self.FIRST_NAME_LOCATOR).send_keys("John")
         self.driver.find_element(*self.LAST_NAME_LOCATOR).send_keys("Doe")
         self.driver.find_element(*self.DATE_OF_BIRTH_LOCATOR).send_keys("01/01/1990")
-        self.driver.find_element(*self.NUMBER_LOCATOR).send_keys(PHONE_NUMBER)
+        self.driver.find_element(*self.NUMBER_LOCATOR).send_keys("PHONE_NUMBER")
         time.sleep(2)
 
     def submit_driver_info(self):
@@ -90,4 +100,4 @@ class UrbanRoutesPage:
         self.driver.find_element(By.XPATH, '//*[@id="root"]/div/div[3]/div[4]/button/span[1]').click()
 
     def get_verification_text(self):
-        return self.driver.find_element(By.CLASS_NAME, "sms-verification__title").text
+        return self.driver.find_element(By.CLASS_NAME, "sms-verification__title").text"""
