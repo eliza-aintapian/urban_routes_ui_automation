@@ -3,12 +3,11 @@ from selenium.webdriver.common.by import By
 import time
 from pages import UrbanRoutesPage
 
-import data  # Task 3: Import test data
-import helpers  # Task 4: Import helper functions for server check
+import data
+import helpers
 
 class TestUrbanRoutes:
 
-    # Task 4: Setup class to check server connection before running tests
     @classmethod
     def setup_class(cls):
         if helpers.is_url_reachable(data.URBAN_ROUTES_URL):
@@ -16,12 +15,10 @@ class TestUrbanRoutes:
         else:
             print("Cannot connect to Urban Routes. Check the server is on and still running")
 
-        # do not modify - we need additional logging enabled in order to retrieve phone confirmation code
         from selenium.webdriver import DesiredCapabilities
         capabilities = DesiredCapabilities.CHROME
         capabilities["goog:loggingPrefs"] = {'performance': 'ALL'}
         cls.driver = webdriver.Chrome()
-    # Task 3: Create empty test functions to be implemented in Sprint 8
 
     def test_set_route(self):
         self.driver.get(data.URBAN_ROUTES_URL)

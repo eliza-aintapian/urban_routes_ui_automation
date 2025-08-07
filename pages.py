@@ -100,4 +100,6 @@ class UrbanRoutesPage:
         self.driver.find_element(By.XPATH, '//*[@id="root"]/div/div[3]/div[4]/button/span[1]').click()
 
     def get_verification_text(self):
-        return self.driver.find_element(By.CLASS_NAME, "sms-verification__title").text"""
+        return self.driver.find_element(By.CLASS_NAME, "sms-verification__title").text
+        
+    THESE ARE JUST SOME METHODS I WANT TO GO OVER DURING A ONE ON ONE"""
