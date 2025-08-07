@@ -84,7 +84,7 @@ class UrbanRoutesPage:
     def add_card(self):
         self.driver.find_element(By.XPATH, '//*[@id="root"]/div/div[2]/div[2]/div[1]/div[2]/div[2]/div[2]').click()
 
-    def fill_card_info(self):
+     def fill_card_info(self, CARD_CODE, CARD_NUMBER):
         self.driver.find_element(By.ID, 'number').send_keys(CARD_NUMBER)
         self.driver.find_element(By.ID, 'code').send_keys(CARD_CODE)
         time.sleep(1)

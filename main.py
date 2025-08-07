@@ -57,6 +57,8 @@ class TestUrbanRoutes:
         phone_code = helpers.retrieve_phone_code(self.driver)
         self.driver.find_element(By.ID, "code").send_keys(phone_code)
 
+        self.driver.find_element(By.XPATH, "//button[@type='submit' and contains(@class, 'button') and contains(@class, 'full') and text()='Confirm']").click()
+
         displayed_number = self.driver.find_element(By.CSS_SELECTOR, "div.np-text").text
         assert data.PHONE_NUMBER in displayed_number
 
@@ -106,7 +108,7 @@ class TestUrbanRoutes:
         self.driver.find_element(By.XPATH, "//button[text()='Call a taxi']").click()
         self.driver.find_element(By.XPATH, "//div[@class='tcard-title' and text()='Supportive']").click()
 
-        slider_checkbox = self.driver.find_element(By.CSS_SELECTOR, "input.switch-input")
+        slider_checkbox = self.driver.find_element(By.CLASS_NAME, 'switch')
         slider_checkbox.click()
 
         is_checked = slider_checkbox.get_property("checked")
