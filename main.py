@@ -70,7 +70,7 @@ class TestUrbanRoutes:
         self.driver.find_element(By.XPATH, "//div[@class='pp-text' and text()='Payment method']").click()
         self.driver.find_element(By.XPATH, "//div[@class='pp-title' and text()='Add card']").click()
         self.driver.find_element(By.ID, "number").send_keys(data.CARD_NUMBER)
-        self.driver.find_element(By.ID, "code").send_keys(data.CARD_CODE)
+        self.driver.find_element(By.CSS_SELECTOR, "#code.card-input").send_keys(data.CARD_CODE)
 
         #clicking on another element to activate the "Link" button
         self.driver.find_element(By.XPATH, "//div[@class='head' and text()='Adding a card']").click()
@@ -79,7 +79,7 @@ class TestUrbanRoutes:
         self.driver.find_element(By.XPATH,"//button[@type='submit' and contains(@class, 'button full') and text()='Link']").click()
 
         #closing the little popup window after adding the card
-        self.driver.find_element(By.CSS_SELECTOR, "button.close-button.section-close").click()
+        #self.driver.find_element(By.CSS_SELECTOR, "button.close-button.section-close").click()
 
         displayed_payment_method = self.driver.find_element(By.CSS_SELECTOR, "div.pp-value-text").text
         assert displayed_payment_method == "Card"
@@ -105,10 +105,10 @@ class TestUrbanRoutes:
         self.driver.find_element(By.XPATH, "//button[text()='Call a taxi']").click()
         self.driver.find_element(By.XPATH, "//div[@class='tcard-title' and text()='Supportive']").click()
 
-        slider_checkbox = self.driver.find_element(By.CLASS_NAME, 'switch')
+        slider_checkbox = self.driver.find_element(By.CSS_SELECTOR, '.slider.round')
         slider_checkbox.click()
 
-        is_checked = slider_checkbox.get_property("checked")
+        is_checked = self.driver.find_element(By.CSS_SELECTOR, '[type=checkbox].switch-input').get_property("checked")
         assert is_checked is True
 
     def test_order_2_ice_creams(self):
@@ -142,7 +142,7 @@ class TestUrbanRoutes:
         phone_code = helpers.retrieve_phone_code(self.driver)
         self.driver.find_element(By.ID, "code").send_keys(phone_code)
 
-        displayed_number = self.driver.find_element(By.CSS_SELECTOR, "div.np-text").text
+        displayed_number = self.driver.find_element(By.XPATH, "//div[contains(@class,'number-panel')]//div[@class='np-text']").text
         assert data.PHONE_NUMBER in displayed_number
 #same here. I literally copy-pasted it
         self.driver.find_element(By.ID, "comment").send_keys(data.MESSAGE_FOR_DRIVER)
@@ -150,7 +150,7 @@ class TestUrbanRoutes:
         comment_to_driver = self.driver.find_element(By.ID, "comment").get_attribute("value")
         assert comment_to_driver == 'Stop at the juice bar, please'
 
-        self.driver.find_element(By.XPATH, "//span[@class='smart-button-main' and text()='Order']").click()
+        self.driver.find_element(By.XPATH, "//button[contains(.,'order')]").click()
 
         car_search_modal = self.driver.find_element(By.XPATH, "//div[@class='order-header-title' and text()='Car search']")
         assert car_search_modal.is_displayed()
