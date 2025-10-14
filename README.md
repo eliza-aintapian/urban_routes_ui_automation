@@ -1,44 +1,36 @@
-# 🧪 QA-USA Python Automation Project
+# 🧪 Urban Routes – Python Test Automation Project
 
 ## 📋 Overview
-This project demonstrates **end-to-end test automation** for a web application using **Python + Selenium + Pytest**.  
-It was created as part of my QA Engineering work to simulate real-world regression and smoke testing workflows.
+This project automates **end-to-end testing** for the Urban Routes web application — a training app for practicing functional and regression testing.  
+The goal is to validate key user journeys such as selecting locations, choosing a ride plan, adding payment details, and placing an order.  
 
-The test suite covers user-facing functionality including:
-- Navigation and UI validation  
-- Login and registration  
-- Form submissions and edge cases  
-- Search, ordering, and confirmation flows  
-
-All tests are built following **modular, maintainable best practices**, with clear structure and reusable page object methods.
+The test suite is written in **Python**, using **Selenium WebDriver** and **Pytest**, following modular **Page Object Model (POM)** principles to keep tests maintainable and reusable.
 
 ---
 
 ## ⚙️ Tools & Technologies
-- **Python** — core language  
-- **Selenium WebDriver** — browser automation  
-- **Pytest** — testing framework and reporting  
-- **Git & GitHub** — version control and collaboration  
-- **CI/CD with GitHub Actions** — automated test runs on each push  
-- **Jira / TestRail (referenced)** — for test case documentation and defect tracking  
+- **Python** – programming language  
+- **Selenium WebDriver** – browser automation  
+- **Pytest** – test framework and reporting  
+- **Git & GitHub** – version control  
+- **ChromeDriver** – browser driver for local runs  
+- *(Optionally)* **GitHub Actions** – CI/CD test automation  
 
 ---
 
-## 🧠 Test Design & Coverage
-Test coverage focuses on both **functional** and **negative** testing scenarios:
+## 🧠 Test Coverage
 
-| Category | Description |
-|-----------|--------------|
-| Functional | Validates primary user flows such as login, navigation, and submission |
-| Boundary | Tests data limits (field lengths, special characters, numeric edges) |
-| Regression | Ensures stability after new code deployments |
-| API | (In progress) API-level tests using Postman for backend validation |
-| Exploratory | Manual sessions to identify UI/UX inconsistencies |
+| Feature | Description |
+|----------|--------------|
+| Route setup | Selects pickup and destination points |
+| Plan selection | Chooses “Supportive” plan and validates it |
+| Phone input | Enters phone number and confirmation code |
+| Payment | Adds card number and code |
+| Driver message | Adds a note for the driver |
+| Add-ons | Orders blankets/handkerchiefs and ice cream |
+| Order flow | Confirms order and validates “Car search” modal |
 
-Example:  
-- Login field validation (empty input, special chars, incorrect creds)  
-- Navigation element rendering on Chrome/Firefox  
-- Form submission with incomplete data  
+Each test uses clean, modular functions from `pages.py` and relies on test data constants from `data.py`.
 
 ---
 
