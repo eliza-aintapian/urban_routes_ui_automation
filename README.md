@@ -51,15 +51,12 @@ QA-USA-Python_Automation/
 **1. Clone the repository**
 git clone https://github.com/eliza-aintapian/QA-USA-Python_Automation.git
 cd QA-USA-Python_Automation
-
 2. Create & activate a virtual environment
 python -m venv venv
 source venv/bin/activate     # Mac/Linux
 venv\Scripts\activate        # Windows
-
 3. Install dependencies
 pip install -r requirements.txt
-
 4. Run all tests
 pytest -v
 You can also run individual tests by specifying the file or test name:
