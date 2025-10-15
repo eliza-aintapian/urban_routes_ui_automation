@@ -93,5 +93,8 @@ Security & Privacy Notice
 All test data in this project (addresses, phone numbers, card numbers) are mock values created for educational purposes.
 No real user information or production systems are accessed.
 
-Author
-Eliza Aintapian
+## Author
+**Eliza Aintapian**  
+QA Engineer | Manual + Automation | API | Web | Mobile Testing  
+📧 eliza.aintapian@gmail.com  
+🔗 [LinkedIn](https://www.linkedin.com/in/eliza-aintapian/)
